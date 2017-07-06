@@ -1,0 +1,80 @@
+<html>
+<head>
+<style>
+body{padding:0; margin:0}
+.wrapper{width:100%; height:auto; background-color: yellow}
+.left{width:45%; height:auto; background-color: #00ffbf; float:left; padding:33px}
+.right{width:45%; height:auto; background-color: #ffb3b3; float:left; padding:33px}
+</style>
+</head>
+<body>
+<div class="wrapper">
+	<div class="left">
+	<h2>Register Form</h2>
+	<form name="registerform"  >
+		<label>User name</label>
+		<input type="text" name="usr" placeholder="username"> 
+		<label>Password</label>
+		<input type="password" name="pword" placeholder="password">
+		<input type="button" onClick="registerForm()" value="Register"/>
+	</form>
+	</div>
+	<div class="right">
+	<h2>Login Form</h2>
+	<form name="loginform" >
+		<label>User name</label>
+		<input type="text" name="usr" placeholder="username"> 
+		<label>Password</label>
+		<input type="password" name="pword" placeholder="password">
+		<input type="button" onClick="loginForm()" value="Login"/>
+	</form>
+	</div>
+</div>
+
+
+<script>
+	var person = [];
+    function registerForm() {
+        var un = document.registerform.usr.value;
+        var pw = document.registerform.pword.value;
+		
+		if((un.trim() == "")||(pw.trim() == "")){
+			alert("đăng ký lỗi");
+		}else{
+			person["userName"] = un;
+			person["passWord"] = pw;
+			alert("đăng ký thành công.\nđăng nhập để truy cập");
+		}
+        
+		console.log(person);
+	}
+	
+	function loginForm(){
+		var un = document.loginform.usr.value;
+        var pw = document.loginform.pword.value;
+		
+		if( typeof person["userName"] == 'undefined'){
+			alert("vui lòng đăng ký 1 nick mới để đăng nhập")
+		}else {
+			if((un.trim() != "")||(pw.trim() != "")){
+				if(un.trim() == person["userName"]){
+					if(pw.trim() == person["passWord"]){
+						alert("đăng nhập thành công")
+					}else if(pw.trim() == ""){
+						alert("vui lòng nhập password")
+					}else{
+						alert("password sai")
+					}
+				}else{
+					alert("user không tồn tại")
+				}
+			}else{
+				alert("vui lòng nhập username và password")
+			}
+		}
+
+		console.log(person);
+	}
+</script>
+</body>
+</html>
